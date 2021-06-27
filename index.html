@@ -17,6 +17,9 @@
     <!-- Place favicon.ico in the root directory -->
 
     <meta name="theme-color" content="#fafafa">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 </head>
 
 <body>
@@ -28,6 +31,53 @@
     <ul>
         <li>CT</li>
     </ul>
+
+    <section>
+        <h1>Challengers</h1>
+
+        <table id='table'>
+
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Seasons</th>
+                <th>Original Show</th>
+                <th>Picture</th>
+            </tr>
+            <tr>
+                <td> Nany </td>
+                <td> Gonzalez </td>
+                <td> 32 </td>
+                <td> 10 </td>
+                <td> The Real World: Las Vegas </td>
+                <td> <img src="https://static.wikia.nocookie.net/thechallenge9148/images/7/7b/NanyDA.png/revision/latest/scale-to-width-down/260?cb=20201113021752"></td>
+            </tr>
+
+            <script>
+                $(document).ready(function () {
+
+                    $.getJSON("challengers.json",
+                        function (data) {
+                            var challenger = '';
+
+                            $.each(data["challengers"], function (key, challenger) {
+                                challengerRow = `<tr>
+                                    <td> ${challenger.firstName} </td>
+                                    <td> ${challenger.lastName} </td>
+                                    <td> ${challenger.age} </td>
+                                    <td> ${challenger.seasons} </td>
+                                    <td> ${challenger.originalShow} </td>
+                                    <td> <img src="https://static.wikia.nocookie.net/thechallenge9148/images/7/7b/NanyDA.png/revision/latest/scale-to-width-down/260?cb=20201113021752"> </td>
+                                </tr>`
+                        
+                            });
+
+                            $('#table').append(challengerRow);
+                        });
+                });
+            </script>
+    </section>
 
 </body>
 
